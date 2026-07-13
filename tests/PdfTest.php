@@ -76,4 +76,24 @@ class PdfTest extends TestCase
 
     }
 
+    public function testIsPasswordProtected()
+    {
+        $pdf = new Pdf();
+        $passwordProtected = $pdf->isPasswordProtected(__DIR__ . "/files/TestPdf.pdf");
+        $this->assertEquals(false, $passwordProtected);
+
+        $passwordProtected = $pdf->isPasswordProtected(__DIR__ . "/files/TestPdfPasswordProtected.pdf");
+        $this->assertEquals(true, $passwordProtected);
+    }
+
+    public function testShowEncryption()
+    {
+        $pdf = new Pdf();
+        $fileEncryption = $pdf->showEncryption(__DIR__ . "/files/TestPdf.pdf");
+        $this->assertEquals('File is not encrypted', $fileEncryption);
+
+        $fileEncryption = $pdf->showEncryption(__DIR__ . "/files/TestPdfPasswordProtected.pdf");
+        $this->assertStringContainsString('Incorrect password supplied', $fileEncryption);
+    }
+
 }

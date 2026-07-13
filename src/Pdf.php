@@ -273,6 +273,9 @@ class Pdf
 
         $this->execute();
 
+        if (empty($this->error)) {
+            return $this->output;
+        }
         return $this->output . "\n" . $this->error;
     }
 }
