@@ -235,5 +235,18 @@ class Pdf
         return $pageTotal;
     }
 
+    public function isPasswordProtected($filePath): bool
+    {
+        $command = $this->resetCommand();
 
+        $command
+            ->addArg('--show-encryption')
+            ->addArg($filePath);
+
+        $this->execute();
+
+        $output = $this->output . "\n" . $this->error;
+
+        return strpos($output, 'Incorrect password') !== false;
+    }
 }
