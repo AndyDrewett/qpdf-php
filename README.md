@@ -79,7 +79,6 @@ $passwordProtected = $pdf->isPasswordProtected(__DIR__ . "/files/TestPdf.pdf");
 ```
 
 ### Show Encryption
-```
 ```php
 $qpdf = new \EddTurtle\Qpdf\Pdf();
 $fileEncryption = $pdf->showEncryption(__DIR__ . "/files/TestPdf.pdf");
