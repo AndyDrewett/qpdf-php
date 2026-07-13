@@ -235,7 +235,13 @@ class Pdf
         return $pageTotal;
     }
 
-    public function isPasswordProtected($filePath): bool
+    /**
+     * Returns whether a file is password protected or not.
+     *
+     * @param string $filePath
+     * @return bool
+     */
+    public function isPasswordProtected(string $filePath): bool
     {
         $command = $this->resetCommand();
 
@@ -248,5 +254,25 @@ class Pdf
         $output = $this->output . "\n" . $this->error;
 
         return strpos($output, 'Incorrect password') !== false;
+    }
+
+
+    /**
+     * Returns the show encryption command output
+     *
+     * @param $filePath
+     * @return string
+     */
+    public function showEncryption($filePath): string
+    {
+        $command = $this->resetCommand();
+
+        $command
+            ->addArg('--show-encryption')
+            ->addArg($filePath);
+
+        $this->execute();
+
+        return $this->output . "\n" . $this->error;
     }
 }
