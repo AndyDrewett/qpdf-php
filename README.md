@@ -70,3 +70,19 @@ $pdf->addPage(__DIR__ . "/files/TestPdf.pdf");
 $count = $pdf->getPageCount();
 // Results in $count containing a value of 3
 ```
+
+### Is Password Protected
+```php
+$qpdf = new \EddTurtle\Qpdf\Pdf();
+$passwordProtected = $pdf->isPasswordProtected(__DIR__ . "/files/TestPdf.pdf");
+// returns true/false on whether the file is password protected
+```
+
+### Show Encryption
+```
+```php
+$qpdf = new \EddTurtle\Qpdf\Pdf();
+$fileEncryption = $pdf->showEncryption(__DIR__ . "/files/TestPdf.pdf");
+// returns the output of qpdf --show-encryption TestPdf 
+```
+
